@@ -1,0 +1,130 @@
+package com.example.jsptest.pojo;
+
+/**
+ * @author puti
+ * @date 2022/3/18
+ */
+public class User {
+    private String yhid;
+    private String yhxm;
+    private String yhkl;
+    private String yhxb;
+    private String yhbm;
+    private String csrq;
+    private String djsj;
+    private String djrq;
+    private String sfjy;
+    private Integer pxh;
+
+    public User() {
+    }
+
+    public User(String yhid, String yhxm, String yhkl, String yhxb, String yhbm, String csrq, String djsj, String djrq, String sfjy, Integer pxh) {
+        this.yhid = yhid;
+        this.yhxm = yhxm;
+        this.yhkl = yhkl;
+        this.yhxb = yhxb;
+        this.yhbm = yhbm;
+        this.csrq = csrq;
+        this.djsj = djsj;
+        this.djrq = djrq;
+        this.sfjy = sfjy;
+        this.pxh = pxh;
+    }
+
+    public String getYhid() {
+        return yhid;
+    }
+
+    public void setYhid(String yhid) {
+        this.yhid = yhid;
+    }
+
+    public String getYhxm() {
+        return yhxm;
+    }
+
+    public void setYhxm(String yhxm) {
+        this.yhxm = yhxm;
+    }
+
+    public String getYhkl() {
+        return yhkl;
+    }
+
+    public void setYhkl(String yhkl) {
+        this.yhkl = yhkl;
+    }
+
+    public String getYhxb() {
+        return yhxb;
+    }
+
+    public void setYhxb(String yhxb) {
+        this.yhxb = yhxb;
+    }
+
+    public String getYhbm() {
+        return yhbm;
+    }
+
+    public void setYhbm(String yhbm) {
+        this.yhbm = yhbm;
+    }
+
+    public String getCsrq() {
+        return csrq;
+    }
+
+    public void setCsrq(String csrq) {
+        this.csrq = csrq;
+    }
+
+    public String getDjsj() {
+        return djsj;
+    }
+
+    public void setDjsj(String djsj) {
+        this.djsj = djsj;
+    }
+
+    public String getDjrq() {
+        return djrq;
+    }
+
+    public void setDjrq(String djrq) {
+        this.djrq = djrq;
+    }
+
+    public String getSfjy() {
+        return sfjy;
+    }
+
+    public void setSfjy(String sfjy) {
+        this.sfjy = sfjy;
+    }
+
+    public Integer getPxh() {
+        return pxh;
+    }
+
+    public void setPxh(Integer pxh) {
+        this.pxh = pxh;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "yhid='" + yhid + '\'' +
+                ", yhxm='" + yhxm + '\'' +
+                ", yhkl='" + yhkl + '\'' +
+                ", yhxb='" + yhxb + '\'' +
+                ", yhbm='" + yhbm + '\'' +
+                ", csrq='" + csrq + '\'' +
+                ", djsj='" + djsj + '\'' +
+                ", djrq='" + djrq + '\'' +
+                ", sfjy='" + sfjy + '\'' +
+                ", pxh=" + pxh +
+                '}';
+    }
+}
