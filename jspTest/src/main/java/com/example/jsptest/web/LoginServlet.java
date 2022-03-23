@@ -20,6 +20,8 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String zh = req.getParameter("zh");
         String kl = req.getParameter("kl");
+        String jzzh = req.getParameter("jzzh");
+        String jzmm = req.getParameter("jzmm");
 
         User user = new User();
         user.setYhid(zh);
@@ -28,14 +30,20 @@ public class LoginServlet extends HttpServlet {
         User loginUser = userService.login(user);
 
         if (loginUser != null) {
-            Cookie zhanghao = new Cookie("zh", zh);
-            Cookie kouling = new Cookie("kl",kl);
-            zhanghao.setMaxAge(60 * 60 * 24 * 7);
-            kouling.setMaxAge(60 * 60 * 24 * 7);
-            resp.addCookie(zhanghao);
-            resp.addCookie(kouling);
+            if (jzzh != null) {
+                Cookie zhanghao = new Cookie("zh", zh);
+                zhanghao.setMaxAge(60 * 60 * 24 * 7);
+                resp.addCookie(zhanghao);
+            }
+            if (jzmm != null) {
+                Cookie kouling = new Cookie("kl", kl);
+                kouling.setMaxAge(60 * 60 * 24 * 7);
+                resp.addCookie(kouling);
+            }
+            req.getRequestDispatcher("/t1.jsp").forward(req, resp);
             System.out.println("登录成功");
         } else {
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
             System.out.println("登陆失败");
         }
     }

@@ -28,7 +28,6 @@ public class JdbcUtils {
     }
 
     /**
-     *
      * @return 如果返回null，则失败
      */
     public static Connection getConnection() {
@@ -44,7 +43,7 @@ public class JdbcUtils {
     }
 
     public static void close(Connection connection) {
-        if(connection != null) {
+        if (connection != null) {
             try {
                 connection.close();
             } catch (SQLException e) {

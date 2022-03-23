@@ -18,6 +18,12 @@ public abstract class BaseDao {
     //使用Dbutils操作数据库
     private QueryRunner queryRunner = new QueryRunner();
 
+    /**
+     * 执行对数据库的更新操作
+     * @param sql sql语句
+     * @param args sql语句的参数
+     * @return 影响的行数
+     */
     public int update(String sql, Object... args) {
         Connection connection = JdbcUtils.getConnection();
         try {
@@ -37,7 +43,7 @@ public abstract class BaseDao {
      * @param sql  执行的sql语句
      * @param args sql对应的参数值
      * @param <T>  返回的类型的泛型
-     * @return
+     * @return 查询到结果则返回，否则返回null
      */
     public <T> Object queryForOne(Class<T> type, String sql, Object... args) {
         Connection connection = JdbcUtils.getConnection();
@@ -52,6 +58,14 @@ public abstract class BaseDao {
     }
 
 
+    /**
+     * 批量查询
+     * @param type 查询的数据类型
+     * @param sql sql语句
+     * @param args sql语句中的参数
+     * @param <T> 查询提供的类型
+     * @return List<T>
+     */
     public <T> List<T> queryForList(Class<T> type, String sql, Object... args) {
         Connection connection = JdbcUtils.getConnection();
         try {
@@ -64,6 +78,12 @@ public abstract class BaseDao {
         return null;
     }
 
+    /**
+     * 查询单个值
+     * @param sql sql语句
+     * @param args sql语句需要的参数
+     * @return Object
+     */
     public Object queryForSingleValue(String sql, Object... args) {
         Connection connection = JdbcUtils.getConnection();
 
