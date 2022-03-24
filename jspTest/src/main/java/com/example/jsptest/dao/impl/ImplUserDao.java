@@ -63,6 +63,18 @@ public class ImplUserDao extends BaseDao implements UserDao {
     @Override
     public User queryUserByYhidAndYhbm(String yhid, String yhbm) {
         String sql = "select * from t_user where yhid = ? and yhbm = ?";
-        return (User) queryForOne(User.class,sql,yhid,yhbm);
+        return (User) queryForOne(User.class, sql, yhid, yhbm);
+    }
+
+    /**
+     * 根据用户id删除用户信息
+     *
+     * @param yhid 用户id
+     * @return 影响的行数
+     */
+    @Override
+    public int deleteByYhid(String yhid) {
+        String sql = "delete from t_user where yhid=?";
+        return update(sql, yhid);
     }
 }

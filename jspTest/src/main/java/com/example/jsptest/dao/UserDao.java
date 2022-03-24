@@ -59,5 +59,11 @@ public interface UserDao {
      */
     public User queryUserByYhidAndYhbm(String yhid, String yhbm);
 
-
+    /**
+     * 根据用户id删除用户信息
+     *
+     * @param yhid 用户id
+     * @return 影响的行数
+     */
+    public int deleteByYhid(String yhid);
 }

@@ -40,4 +40,9 @@ class UserDaoTest {
     void queryUserByYhidAndYhbm() {
         System.out.println(userDao.queryUserByYhidAndYhbm("lijiong","32010001"));
     }
+
+    @Test
+    void deleteByYhid() {
+        System.out.println(userDao.deleteByYhid("dada"));
+    }
 }

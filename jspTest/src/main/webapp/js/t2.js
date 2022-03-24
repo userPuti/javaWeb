@@ -14,6 +14,7 @@ $(function () {
         $.removeCookie("sfjy");
         $.removeCookie("pxh");
         $.removeCookie("yhbm");
+
         $(location).attr("href", "t1.jsp");
     });
 

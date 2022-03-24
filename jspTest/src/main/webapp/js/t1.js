@@ -16,8 +16,8 @@ $(function () {
                 html += "<td>" + users[i].sfjy + "</td>";
                 html += "<td>" + users[i].pxh + "</td>";
                 html += "<td><img src='/jspTest/images/search.png' width='30' height='30' style='cursor:pointer' onclick='checkInfo(this)'/></td>";
-                html += "<td><img src='/jspTest/images/modify.png' width='30' height='30' style='cursor:pointer' onclick='modify(this)'/></td>";
                 html += "<td><img src='/jspTest/images/delete.png' width='30' height='30' style='cursor:pointer' onclick='deleteInfo(this)'/></td>";
+                html += "<td><img src='/jspTest/images/modify.png' width='30' height='30' style='cursor:pointer' onclick='modify(this)'/></td>";
                 html += "</tr>";
             }
 
@@ -48,8 +48,8 @@ $(function () {
                     html += "<td>" + users[i].sfjy + "</td>";
                     html += "<td>" + users[i].pxh + "</td>";
                     html += "<td><img src='/jspTest/images/search.png' width='30' height='30' style='cursor:pointer' onclick='checkInfo(this)'/></td>";
-                    html += "<td><img src='/jspTest/images/modify.png' width='30' height='30' style='cursor:pointer' onclick='modify(this)'/></td>";
                     html += "<td><img src='/jspTest/images/delete.png' width='30' height='30' style='cursor:pointer' onclick='deleteInfo(this)'/></td>";
+                    html += "<td><img src='/jspTest/images/modify.png' width='30' height='30' style='cursor:pointer' onclick='modify(this)'/></td>";
                     html += "</tr>";
                 }
                 $("#tbody").html(html);
@@ -90,5 +90,11 @@ function modify(obj) {
 
 
 function deleteInfo(obj) {
+    let yhid = $(obj).parent().siblings().eq(0).html();
 
+    $.get(
+        "/jspTest/deleteInfoServlet", {"yhid": yhid}, function () {
+            $(obj).parent().parent().remove();
+        }
+    );
 }
