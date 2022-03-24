@@ -25,7 +25,8 @@
     <button id="search">查询</button>
     <%--    <button id="addUser">新增</button>--%>
     <a id="addUser" href="${pageContext.request.contextPath}/t2.jsp">新增</a>
-    <button id="logoff">注销</button>
+<%--    <button id="logoff">注销</button>--%>
+    <a href="logoffServlet">注销</a>
 </div>
 <div style="width:100%; height:100%;" align="left">
     <table id="grid" border="1" cellpadding="10" cellspacing="0" width="95%">
@@ -50,6 +51,8 @@
     </table>
 </div>
 <script src="${pageContext.request.contextPath}/webjars/jquery/3.6.0/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
+
 <script src="./js/t1.js"></script>
 </body>
 </html>

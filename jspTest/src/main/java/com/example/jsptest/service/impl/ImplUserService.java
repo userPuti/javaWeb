@@ -17,7 +17,7 @@ public class ImplUserService implements UserService {
 
     @Override
     public User login(User user) {
-        return userDao.queryUserByUsernameAndPassword(user.getYhid(), user.getYhkl());
+        return userDao.queryUserByYhidAndYhkl(user.getYhid(), user.getYhkl());
     }
 
     @Override
@@ -33,12 +33,12 @@ public class ImplUserService implements UserService {
     /**
      * 根据用户名查询用户
      *
-     * @param username 用户名
+     * @param yhid 用户名
      * @return User对象
      */
     @Override
-    public User queryUserByUsername(String username) {
-        return userDao.queryUserByUsername(username);
+    public User queryUserByYhid(String yhid) {
+        return userDao.queryUserByUsername(yhid);
     }
 
     /**

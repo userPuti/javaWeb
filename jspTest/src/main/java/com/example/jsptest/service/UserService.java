@@ -38,7 +38,7 @@ public interface UserService {
      * @param username 用户名
      * @return User对象
      */
-    public User queryUserByUsername(String username);
+    public User queryUserByYhid(String username);
 
     /**
      * 根据用户部门查询用户

@@ -98,6 +98,7 @@
 </form>
 
 <script src="${pageContext.request.contextPath}/webjars/jquery/3.6.0/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
 <script src="./js/t2.js"></script>
 </body>
 </html>

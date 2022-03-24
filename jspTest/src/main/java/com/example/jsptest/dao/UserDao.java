@@ -17,7 +17,7 @@ public interface UserDao {
      * @param password 密码
      * @return 返回null代表没有，反之则用户存在
      */
-    public User queryUserByUsernameAndPassword(String username, String password);
+    public User queryUserByYhidAndYhkl(String username, String password);
 
     /**
      * 查询所有的用户信息

@@ -12,9 +12,9 @@ import java.util.List;
  */
 public class ImplUserDao extends BaseDao implements UserDao {
     @Override
-    public User queryUserByUsernameAndPassword(String username, String password) {
+    public User queryUserByYhidAndYhkl(String yhid, String yhkl) {
         String sql = "select * from t_user where yhid = ? and yhkl = ?";
-        return (User) queryForOne(User.class, sql, username, password);
+        return (User) queryForOne(User.class, sql, yhid, yhkl);
     }
 
     @Override

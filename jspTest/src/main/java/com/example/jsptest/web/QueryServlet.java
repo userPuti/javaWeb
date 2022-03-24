@@ -56,7 +56,7 @@ public class QueryServlet extends HttpServlet {
             resp.getWriter().write(jusers);
 
         } else {
-            user = userService.queryUserByUsername(yhzh);
+            user = userService.queryUserByYhid(yhzh);
             String juser = gson.toJson(user);
             users.add(user);
             String jusers = gson.toJson(users);
