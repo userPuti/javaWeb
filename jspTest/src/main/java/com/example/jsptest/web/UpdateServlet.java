@@ -15,11 +15,11 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * @author puti
- * @date 2022/3/22
+ * @author Puti
+ * @date 2022/3/25 10:38
  */
-@WebServlet(name = "AddUserServlet", value = "/addUserServlet")
-public class AddUserServlet extends HttpServlet {
+@WebServlet(name = "UpdateServlet", value = "/updateServlet")
+public class UpdateServlet extends HttpServlet {
     private final UserService userService = new ImplUserService();
 
     @Override
@@ -29,8 +29,8 @@ public class AddUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html;charset=utf-8");
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html,charset=utf-8");
 
         String yhbm = req.getParameter("yhbm");
         String xb = req.getParameter("xb");
@@ -58,9 +58,10 @@ public class AddUserServlet extends HttpServlet {
             user.setYhxb("09_00003-255");
         }
 
-//        SimpleDateFormat csrq = new SimpleDateFormat("yyyyMMdd");
         user.setCsrq(csrq);
         user.setPxh(Integer.parseInt(req.getParameter("pxhText")));
+
+        System.out.println(sfjy);
 
         if (Objects.equals(sfjy,"on")) {
             user.setSfjy("1");
@@ -74,13 +75,13 @@ public class AddUserServlet extends HttpServlet {
         user.setDjrq(djrq.format(date));
         user.setDjsj(djsj.format(date));
 
-        int rows = userService.insertUser(user);
+        int rows = userService.updateUserInfo(user);
 
         if (rows == 1) {
             req.getRequestDispatcher("/t1.jsp").forward(req, resp);
-            System.out.println("添加成功");
+            System.out.println("更新成功");
         } else {
-            System.out.println("添加失败");
+            System.out.println("更新失败");
         }
     }
 }

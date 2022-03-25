@@ -25,7 +25,7 @@
     <span id="klMsg"></span>
     <br/>
     <input id="submit" type="submit" value="登录"/>
-    <input id="logoff" type="button" value="重置"/>
+    <input id="logoff" type="reset" value="重置"/>
 </form>
 </body>
 </html>

@@ -8,10 +8,10 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="./css/t2.css">
+    <link rel="stylesheet" type="text/css" href="./css/modify.css">
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/addUserServlet" method="post">
+<form action="${pageContext.request.contextPath}/updateServlet" method="post">
     <table width="95%" border="1" cellpadding="10" cellspace="0" align="center">
         <tr>
             <td colspan="4" align="center" style="word-wrap:break-word;">用户信息</td>
@@ -99,6 +99,6 @@
 
 <script src="${pageContext.request.contextPath}/webjars/jquery/3.6.0/dist/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
-<script src="./js/t2.js"></script>
+<script src="./js/modify.js"></script>
 </body>
 </html>

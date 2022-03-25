@@ -64,4 +64,13 @@ public interface UserService {
      * @return 影响的行数
      */
     public int deleteUserInfo(String yhid);
+
+
+    /**
+     * 更新用户信息
+     *
+     * @param user user对象
+     * @return 影响的行数
+     */
+    public int updateUserInfo(User user);
 }

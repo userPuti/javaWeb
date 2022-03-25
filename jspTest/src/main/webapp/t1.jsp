@@ -25,7 +25,7 @@
     <button id="search">查询</button>
     <%--    <button id="addUser">新增</button>--%>
     <a id="addUser" href="${pageContext.request.contextPath}/t2.jsp">新增</a>
-<%--    <button id="logoff">注销</button>--%>
+    <%--    <button id="logoff">注销</button>--%>
     <a href="logoffServlet">注销</a>
 </div>
 <div style="width:100%; height:100%;" align="left">

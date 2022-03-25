@@ -22,7 +22,8 @@ class UserDaoTest {
 
     @Test
     void insertUser() {
-        User user = new User("11111","Anny","abcdef","09_00003-1","32010001","19971123","2022-3-8 10:03:21","2022-3-8","1",3);
+        User user = new User("11111", "Anny", "abcdef", "09_00003-1", "32010001", "19971123", "2022-3-8 10:03:21", "2022-3-8", "1", 3);
+
         userDao.insertUser(user);
     }
 
@@ -38,11 +39,18 @@ class UserDaoTest {
 
     @Test
     void queryUserByYhidAndYhbm() {
-        System.out.println(userDao.queryUserByYhidAndYhbm("lijiong","32010001"));
+        System.out.println(userDao.queryUserByYhidAndYhbm("lijiong", "32010001"));
     }
 
     @Test
     void deleteByYhid() {
         System.out.println(userDao.deleteByYhid("dada"));
+    }
+
+    @Test
+    void updateUserInfo() {
+        User user = new User("333", "Anny", "abcdef", "09_00003-1", "32010001", "19971123", "2022-3-8 10:03:21", "2022-3-8", "1", 3);
+        int i = userDao.updateUserInfo(user);
+        System.out.println(i);
     }
 }

@@ -20,7 +20,8 @@ public abstract class BaseDao {
 
     /**
      * 执行对数据库的更新操作
-     * @param sql sql语句
+     *
+     * @param sql  sql语句
      * @param args sql语句的参数
      * @return 影响的行数
      */
@@ -60,10 +61,11 @@ public abstract class BaseDao {
 
     /**
      * 批量查询
+     *
      * @param type 查询的数据类型
-     * @param sql sql语句
+     * @param sql  sql语句
      * @param args sql语句中的参数
-     * @param <T> 查询提供的类型
+     * @param <T>  查询提供的类型
      * @return List<T>
      */
     public <T> List<T> queryForList(Class<T> type, String sql, Object... args) {
@@ -80,7 +82,8 @@ public abstract class BaseDao {
 
     /**
      * 查询单个值
-     * @param sql sql语句
+     *
+     * @param sql  sql语句
      * @param args sql语句需要的参数
      * @return Object
      */

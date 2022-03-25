@@ -77,4 +77,16 @@ public class ImplUserDao extends BaseDao implements UserDao {
         String sql = "delete from t_user where yhid=?";
         return update(sql, yhid);
     }
+
+    /**
+     * 更新用户信息
+     *
+     * @param user user对象
+     * @return 影响的行数
+     */
+    @Override
+    public int updateUserInfo(User user) {
+        String sql = "update t_user set yhxm= ?, yhkl=?,yhxb=?,yhbm=?,csrq=?,djsj=?,djrq=?,sfjy=?,pxh=? where yhid=?";
+        return update(sql, user.getYhxm(), user.getYhkl(), user.getYhxb(), user.getYhbm(), user.getCsrq(), user.getDjsj(), user.getDjrq(), user.getSfjy(), user.getPxh(), user.getYhid());
+    }
 }

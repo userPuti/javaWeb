@@ -4,12 +4,11 @@ $(function () {
             return validateForm();
         }
     );
-    $("#logoff").click(
-        function () {
-            $("form")[0].reset();
-        }
-    )
-
+    // $("#logoff").click(
+    //     function () {
+    //         $("form")[0].reset();
+    //     }
+    // )
 });
 
 

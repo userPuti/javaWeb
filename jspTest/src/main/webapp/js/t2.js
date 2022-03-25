@@ -6,65 +6,10 @@ $(function () {
     );
 
     $("#back").click(function () {
-        $.removeCookie("yhid");
-        $.removeCookie("yhxm");
-        $.removeCookie("yhkl");
-        $.removeCookie("yhxb");
-        $.removeCookie("csrq");
-        $.removeCookie("sfjy");
-        $.removeCookie("pxh");
-        $.removeCookie("yhbm");
-
         $(location).attr("href", "t1.jsp");
     });
-
-    let type = $.cookie("type");
-    // alert(type);
-    if (type === "check") {
-        console.log(1);
-        checkInfo();
-    }
 })
 
-
-function checkInfo() {
-    let yhid = $.cookie("yhid");
-    console.log(yhid);
-    let yhxm = $.cookie("yhxm");
-    let yhkl = $.cookie("yhkl");
-    let yhxb = $.cookie("yhxb");
-    let csrq = $.cookie("csrq");
-    let sfjy = $.cookie("sfjy");
-    let pxh = $.cookie("pxh");
-    let yhbm = $.cookie("yhbm");
-
-    $("#yhidText").parent().html(yhid);
-
-    $("#pxhText").parent().html(pxh);
-    $("#yhxmText").parent().html(yhxm);
-
-    $("#yhklText").parent().html(yhkl);
-    $("#cfklText").parent().html(yhkl);
-
-    $('#yhbm').hide();
-    $("#yhbm").parent().html(yhbm);
-
-    $('#xb').hide();
-    $("#xb").parent().html(yhxb);
-
-    if (sfjy === '否') {
-        $('#sfjy').hide();
-        $('#sfjy').parent().html('否');
-    } else {
-        $('#sfjy').hide();
-        $('#sfjy').parent().html('是');
-    }
-
-    $('#date').hide();
-    $("#date").parent().html(csrq);
-
-    $('#submit').hide();
-}
 
 function validateForm() {
     let yhid = $("#yhidText").val();
@@ -94,4 +39,25 @@ function validateForm() {
     }
 
     return true;
+}
+
+Date.prototype.format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
 }

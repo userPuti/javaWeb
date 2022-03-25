@@ -30,7 +30,7 @@ public class CheckServlet extends HttpServlet {
             Gson gson = new Gson();
             String jUser = gson.toJson(user);
             HttpSession session = req.getSession();
-            session.setAttribute("user",jUser);
+            session.setAttribute("user", jUser);
         }
     }
 }

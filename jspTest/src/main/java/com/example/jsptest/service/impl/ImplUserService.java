@@ -61,7 +61,7 @@ public class ImplUserService implements UserService {
      */
     @Override
     public User queryUserByYhidAndYhbm(String yhid, String yhbm) {
-        return userDao.queryUserByYhidAndYhbm(yhid,yhbm);
+        return userDao.queryUserByYhidAndYhbm(yhid, yhbm);
     }
 
     /**
@@ -73,5 +73,16 @@ public class ImplUserService implements UserService {
     @Override
     public int deleteUserInfo(String yhid) {
         return userDao.deleteByYhid(yhid);
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param user user对象
+     * @return 影响的行数
+     */
+    @Override
+    public int updateUserInfo(User user) {
+        return userDao.updateUserInfo(user);
     }
 }

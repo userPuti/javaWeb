@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="./css/t2.css">
+    <link rel="stylesheet" type="text/css" href="./css/check.css">
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/addUserServlet" method="post">
@@ -99,6 +99,6 @@
 
 <script src="${pageContext.request.contextPath}/webjars/jquery/3.6.0/dist/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
-<script src="./js/t2.js"></script>
+<script src="./js/check.js"></script>
 </body>
 </html>
