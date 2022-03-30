@@ -1,14 +1,34 @@
 $(function () {
-    isSuccess();
+
 
     $("form").submit(function () {
-        return validateForm();
+        let reqInfo = validateForm();
+
+        if(reqInfo === false) {
+            layer.msg("请检查必填项！", {
+                icon: 2,
+                shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                time: 2000
+            });
+            return reqInfo;
+        } else {
+            layer.msg("添加成功", {
+                icon: 1,
+                shade: 0.000001,
+                time: 2000,
+            });
+            return reqInfo;
+        }
     });
 
     $("#back").click(function () {
-        $(location).attr("href", "homePage.jsp");
+        closeWindow();
     });
 })
+
+function closeWindow() {
+    parent.layer.closeAll();
+}
 
 function isSuccess() {
     let isSucc = $("#isSuccess").val();
@@ -35,45 +55,6 @@ function validateForm() {
     let yhkl = $("#iYhkl").val();
     let cfkl = $("#iCfkl").val();
 
-    if (yhzh == null || yhzh === "") {
-        layer.msg("id必须填写", {
-            icon: 2,
-            shade: 0.000001,
-            time: 2000,
-        });
-        return false;
-    }
-    if (yhxm == null || yhxm === "") {
-        layer.msg("姓名必须填写", {
-            icon: 2,
-            shade: 0.000001,
-            time: 2000,
-        });
-        return false;
-    }
-    if (yhkl == null || yhkl === "") {
-        layer.msg("口令必须填写", {
-            icon: 2,
-            shade: 0.000001,
-            time: 2000,
-        });
-        return false;
-    }
-    if (cfkl == null || cfkl === "") {
-        layer.msg("重复口令必须填写", {
-            icon: 2,
-            shade: 0.000001,
-            time: 2000,
-        });
-        return false;
-    }
-    if (yhkl !== cfkl) {
-        layer.msg("口令不一致", {
-            icon: 2,
-            shade: 0.000001,
-            time: 2000,
-        });
-        return false;
-    }
-    return true;
+    return yhzh != null && yhzh !== "" && yhxm != null && yhxm !== "" && yhkl != null && yhkl !== "" && cfkl != null && cfkl !== "" && cfkl === yhkl;
+
 }

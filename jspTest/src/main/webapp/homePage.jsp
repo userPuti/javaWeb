@@ -44,7 +44,7 @@
                         <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="query">
                             <i class="tdh_icon icon_search"></i>查询
                         </a>
-                        <a class="tdh_btn tdh_btn_blue" href="addUser.jsp" id="addUser">
+                        <a class="tdh_btn tdh_btn_blue" id="addUser">
                             <i class="tdh_icon icon_add"></i>新增
                         </a>
                         <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="delUsers">

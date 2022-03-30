@@ -7,6 +7,11 @@ $(function () {
         queryInfo();
     });
 
+    $("#addUser").click(
+        function () {
+            addForm();
+        }
+    )
 })
 
 function initGrid() {
@@ -26,6 +31,17 @@ function initGrid() {
     mygrid.loadXML(CONTEXT_PATH + "/displayUserInfoServlet");
 }
 
+function addForm() {
+    layer.open({
+        type: 2,
+        title: "新增",
+        area: ['700px', '500px'],
+        shadeClose: true, //点击遮罩关闭
+        content: CONTEXT_PATH + "/addUser.jsp"
+    });
+}
+
+
 function queryInfo() {
     let yhzh = $("#yhzh").val();
     let yhbm = $("#yhbm").val();
@@ -35,6 +51,22 @@ function queryInfo() {
     }
 }
 
+function delRows() {
+    // 获取所有选中行的id
+    let checkedRows = mygrid.getCheckedRows(0);
+    if (!checkedRows) {
+        layer.msg("未勾选行记录！", {
+            icon: 7,
+            shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+            time: 2000
+        });
+        return;
+    }
+
+    alert("勾选中的行ID分别为：" + checkedRows);
+
+    // TODO
+}
 
 
 
