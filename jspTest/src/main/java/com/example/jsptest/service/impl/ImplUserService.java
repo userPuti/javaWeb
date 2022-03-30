@@ -6,6 +6,7 @@ import com.example.jsptest.pojo.User;
 import com.example.jsptest.service.UserService;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author puti
@@ -21,13 +22,52 @@ public class ImplUserService implements UserService {
     }
 
     @Override
-    public List<User> userInfoDisplay() {
-        return userDao.queryAllUser();
+    public String userInfoDisplay() {
+
+        List<User> list = userDao.queryAllUser();
+        return userListXml(list);
     }
 
     @Override
-    public int insertUser(User user) {
-        return userDao.insertUser(user);
+    public String insertUser(User user) {
+        String yhbm = user.getYhbm();
+        String xb = user.getYhxb();
+        String sfjy = user.getSfjy();
+
+        if (Objects.equals(yhbm, "lat")) {
+            user.setYhbm("32010001");
+        } else if (Objects.equals(yhbm, "ywt")) {
+            user.setYhbm("32010002");
+        } else {
+            user.setYhbm("32010003");
+        }
+
+        if (Objects.equals(xb, "male")) {
+            user.setYhxb("09_00003-1");
+        } else if (Objects.equals(xb, "female")) {
+            user.setYhxb("09_00003-2");
+        } else {
+            user.setYhxb("09_00003-255");
+        }
+
+        if (Objects.equals(sfjy,"on")) {
+            user.setSfjy("1");
+        } else {
+            user.setSfjy("0");
+        }
+
+        int rows = userDao.insertUser(user);
+
+        String isSuccess = "";
+        if (rows == 1) {
+            System.out.println("添加成功");
+            isSuccess = "success";
+        } else {
+            System.out.println("添加失败");
+            isSuccess = "defeat";
+        }
+
+        return isSuccess;
     }
 
     /**
@@ -37,8 +77,9 @@ public class ImplUserService implements UserService {
      * @return User对象
      */
     @Override
-    public User queryUserByYhid(String yhid) {
-        return userDao.queryUserByUsername(yhid);
+    public String queryUserByYhid(String yhid) {
+        List<User> list = userDao.queryUserByYhid(yhid);
+        return userListXml(list);
     }
 
     /**
@@ -48,8 +89,9 @@ public class ImplUserService implements UserService {
      * @return List<User>对象
      */
     @Override
-    public List<User> queryUserByYhbm(String yhbm) {
-        return userDao.queryUserByYhbm(yhbm);
+    public String queryUserByYhbm(String yhbm) {
+        List<User> users = userDao.queryUserByYhbm(yhbm);
+        return userListXml(users);
     }
 
     /**
@@ -60,8 +102,9 @@ public class ImplUserService implements UserService {
      * @return User对象
      */
     @Override
-    public User queryUserByYhidAndYhbm(String yhid, String yhbm) {
-        return userDao.queryUserByYhidAndYhbm(yhid, yhbm);
+    public String queryUserByYhidAndYhbm(String yhid, String yhbm) {
+        List<User> users = userDao.queryUserByYhidAndYhbm(yhid, yhbm);
+        return userListXml(users);
     }
 
     /**
@@ -84,5 +127,61 @@ public class ImplUserService implements UserService {
     @Override
     public int updateUserInfo(User user) {
         return userDao.updateUserInfo(user);
+    }
+
+    private String userListXml(List<User> list) {
+        StringBuilder allUserxml = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
+        if (list != null && list.size() > 0) {
+            allUserxml.append("<rows>");
+            allUserxml.append("<userdata name='totalnumber'>").append(list.size()).append("</userdata>");
+            for (User user : list) {
+                String yhbm = user.getYhbm();
+                if (Objects.equals(yhbm, "32010001")) {
+                    yhbm = "立案庭";
+                } else if (Objects.equals(yhbm, "32010002")) {
+                    yhbm = "业务庭";
+                } else if (Objects.equals(yhbm, "32010003")) {
+                    yhbm = "办公室";
+                }
+
+                String yhxb = user.getYhxb();
+
+                if (Objects.equals(yhxb, "09_00003-1")) {
+                    yhxb = "男";
+                } else if (Objects.equals(yhxb, "09_00003-2")) {
+                    yhxb = "女";
+                } else if (Objects.equals(yhxb, "09_00003-255")) {
+                    yhxb = "其他";
+                }
+
+                String sfjy = user.getSfjy();
+
+                if (Objects.equals(sfjy, "1")) {
+                    sfjy = "是";
+                } else if (Objects.equals(sfjy, "0")) {
+                    sfjy = "否";
+                }
+
+                allUserxml.append("<row>");
+                allUserxml.append("<cell>0</cell>");
+                allUserxml.append("<cell>").append(user.getYhid()).append("</cell>");
+                allUserxml.append("<cell>").append(user.getYhxm()).append("</cell>");
+                allUserxml.append("<cell>").append(yhxb).append("</cell>");
+                allUserxml.append("<cell>").append(yhbm).append("</cell>");
+                allUserxml.append("<cell>").append(user.getCsrq()).append("</cell>");
+                allUserxml.append("<cell>").append(user.getDjrq()).append("</cell>");
+                allUserxml.append("<cell>").append(sfjy).append("</cell>");
+                allUserxml.append("<cell>").append(user.getPxh()).append("</cell>");
+                allUserxml.append("<cell>").append("images/search.png^查看^userInfo.jsp^").append("</cell>");
+                allUserxml.append("<cell>").append("images/modify.png^修改^modifyUser.jsp^").append("</cell>");
+                allUserxml.append("<cell>").append("images/delete.png^删除^deleteUser.jsp^").append("</cell>");
+                allUserxml.append("</row>");
+            }
+            allUserxml.append("</rows>");
+        } else {
+            //没数据
+            allUserxml.append("<rows><userdata name='totalnumber'>0</userdata></rows>");
+        }
+        return allUserxml.toString();
     }
 }

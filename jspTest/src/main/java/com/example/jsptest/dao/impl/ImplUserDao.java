@@ -25,20 +25,20 @@ public class ImplUserDao extends BaseDao implements UserDao {
 
     @Override
     public int insertUser(User user) {
-        String sql = "insert into t_user values(?,?,?,?,?,?,?,?,?,?)";
-        return update(sql, user.getYhid(), user.getYhxm(), user.getYhkl(), user.getYhxb(), user.getYhbm(), user.getCsrq(), user.getDjsj(), user.getDjrq(), user.getSfjy(), user.getPxh());
+        String sql = "insert into t_user values(?,?,?,?,?,?,?,?,?)";
+        return update(sql, user.getYhid(), user.getYhxm(), user.getYhkl(), user.getYhxb(), user.getYhbm(), user.getCsrq(), user.getDjrq(), user.getSfjy(), user.getPxh());
     }
 
     /**
      * 根据用户名查询用户
      *
-     * @param username 用户名
+     * @param yhid 用户名
      * @return User对象
      */
     @Override
-    public User queryUserByUsername(String username) {
+    public List<User> queryUserByYhid(String yhid) {
         String sql = "select * from t_user where yhid = ?";
-        return (User) queryForOne(User.class, sql, username);
+        return queryForList(User.class, sql, yhid);
     }
 
     /**
@@ -61,9 +61,9 @@ public class ImplUserDao extends BaseDao implements UserDao {
      * @return User对象
      */
     @Override
-    public User queryUserByYhidAndYhbm(String yhid, String yhbm) {
+    public List<User> queryUserByYhidAndYhbm(String yhid, String yhbm) {
         String sql = "select * from t_user where yhid = ? and yhbm = ?";
-        return (User) queryForOne(User.class, sql, yhid, yhbm);
+        return queryForList(User.class, sql, yhid, yhbm);
     }
 
     /**
@@ -86,7 +86,7 @@ public class ImplUserDao extends BaseDao implements UserDao {
      */
     @Override
     public int updateUserInfo(User user) {
-        String sql = "update t_user set yhxm= ?, yhkl=?,yhxb=?,yhbm=?,csrq=?,djsj=?,djrq=?,sfjy=?,pxh=? where yhid=?";
-        return update(sql, user.getYhxm(), user.getYhkl(), user.getYhxb(), user.getYhbm(), user.getCsrq(), user.getDjsj(), user.getDjrq(), user.getSfjy(), user.getPxh(), user.getYhid());
+        String sql = "update t_user set yhxm= ?, yhkl=?,yhxb=?,yhbm=?,csrq=?,djrq=?,sfjy=?,pxh=? where yhid=?";
+        return update(sql, user.getYhxm(), user.getYhkl(), user.getYhxb(), user.getYhbm(), user.getCsrq(), user.getDjrq(), user.getSfjy(), user.getPxh(), user.getYhid());
     }
 }

@@ -22,7 +22,7 @@ public interface UserService {
      *
      * @return List<User>
      */
-    public List<User> userInfoDisplay();
+    public String userInfoDisplay();
 
     /**
      * 新增用户信息
@@ -30,7 +30,7 @@ public interface UserService {
      * @param user user对象
      * @return 影响的行数
      */
-    public int insertUser(User user);
+    public String insertUser(User user);
 
     /**
      * 根据用户名查询用户
@@ -38,7 +38,7 @@ public interface UserService {
      * @param username 用户名
      * @return User对象
      */
-    public User queryUserByYhid(String username);
+    public String queryUserByYhid(String username);
 
     /**
      * 根据用户部门查询用户
@@ -46,7 +46,7 @@ public interface UserService {
      * @param yhbm 用户部门
      * @return List<User>对象
      */
-    public List<User> queryUserByYhbm(String yhbm);
+    public String queryUserByYhbm(String yhbm);
 
     /**
      * 根据用户id和用户部门查询用户
@@ -55,7 +55,7 @@ public interface UserService {
      * @param yhbm 用户部门
      * @return User对象
      */
-    public User queryUserByYhidAndYhbm(String yhid, String yhbm);
+    public String queryUserByYhidAndYhbm(String yhid, String yhbm);
 
     /**
      * 根据用户id删除用户信息

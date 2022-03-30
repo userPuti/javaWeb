@@ -15,7 +15,7 @@ $(function () {
         $.removeCookie("pxh");
         $.removeCookie("yhbm");
 
-        $(location).attr("href", "t1.jsp");
+        $(location).attr("href", "homePage.jsp");
     });
 
     let type = $.cookie("type");

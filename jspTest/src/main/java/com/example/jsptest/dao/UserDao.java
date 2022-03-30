@@ -40,7 +40,7 @@ public interface UserDao {
      * @param username 用户名
      * @return User对象
      */
-    public User queryUserByUsername(String username);
+    public List<User> queryUserByYhid(String username);
 
     /**
      * 根据用户部门查询用户
@@ -57,7 +57,7 @@ public interface UserDao {
      * @param yhbm 用户部门
      * @return User对象
      */
-    public User queryUserByYhidAndYhbm(String yhid, String yhbm);
+    public List<User> queryUserByYhidAndYhbm(String yhid, String yhbm);
 
     /**
      * 根据用户id删除用户信息

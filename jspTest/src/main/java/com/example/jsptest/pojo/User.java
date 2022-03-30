@@ -11,7 +11,6 @@ public class User {
     private String yhxb;
     private String yhbm;
     private String csrq;
-    private String djsj;
     private String djrq;
     private String sfjy;
     private Integer pxh;
@@ -19,14 +18,13 @@ public class User {
     public User() {
     }
 
-    public User(String yhid, String yhxm, String yhkl, String yhxb, String yhbm, String csrq, String djsj, String djrq, String sfjy, Integer pxh) {
+    public User(String yhid, String yhxm, String yhkl, String yhxb, String yhbm, String csrq, String djrq, String sfjy, Integer pxh) {
         this.yhid = yhid;
         this.yhxm = yhxm;
         this.yhkl = yhkl;
         this.yhxb = yhxb;
         this.yhbm = yhbm;
         this.csrq = csrq;
-        this.djsj = djsj;
         this.djrq = djrq;
         this.sfjy = sfjy;
         this.pxh = pxh;
@@ -80,14 +78,6 @@ public class User {
         this.csrq = csrq;
     }
 
-    public String getDjsj() {
-        return djsj;
-    }
-
-    public void setDjsj(String djsj) {
-        this.djsj = djsj;
-    }
-
     public String getDjrq() {
         return djrq;
     }
@@ -121,7 +111,6 @@ public class User {
                 ", yhxb='" + yhxb + '\'' +
                 ", yhbm='" + yhbm + '\'' +
                 ", csrq='" + csrq + '\'' +
-                ", djsj='" + djsj + '\'' +
                 ", djrq='" + djrq + '\'' +
                 ", sfjy='" + sfjy + '\'' +
                 ", pxh=" + pxh +

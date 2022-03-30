@@ -9,6 +9,6 @@ class LoginServiceTest {
 
     @Test
     void login() {
-        System.out.println(userService.login(new User("lijiong", "李炅", "123456", null, null, null, null, null, null, null)));
+        System.out.println(userService.login(new User("lijiong", "李炅", "123456", null,  null, null, null, null, null)));
     }
 }

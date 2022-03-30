@@ -22,14 +22,14 @@ class UserDaoTest {
 
     @Test
     void insertUser() {
-        User user = new User("11111", "Anny", "abcdef", "09_00003-1", "32010001", "19971123", "2022-3-8 10:03:21", "2022-3-8", "1", 3);
+        User user = new User("11111", "Anny", "abcdef", "09_00003-1", "32010001", "19971123",  "2022-3-8", "1", 3);
 
         userDao.insertUser(user);
     }
 
     @Test
     void queryUserByUsername() {
-        System.out.println(userDao.queryUserByUsername("lijiong"));
+        System.out.println(userDao.queryUserByYhid("lijiong"));
     }
 
     @Test
@@ -49,7 +49,7 @@ class UserDaoTest {
 
     @Test
     void updateUserInfo() {
-        User user = new User("333", "Anny", "abcdef", "09_00003-1", "32010001", "19971123", "2022-3-8 10:03:21", "2022-3-8", "1", 3);
+        User user = new User("333", "Anny", "abcdef", "09_00003-1", "32010001", "19971123",  "2022-3-8", "1", 3);
         int i = userDao.updateUserInfo(user);
         System.out.println(i);
     }

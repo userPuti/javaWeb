@@ -23,15 +23,8 @@ public class DisplayUserInfoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
-        List<User> users = userService.userInfoDisplay();
-//        HttpSession session = req.getSession();
-        if (users != null && users.size() != 0) {
-            Gson gson = new Gson();
-            String jUsers = gson.toJson(users);
-//            session.setAttribute("jUsers", jUsers);
-            resp.getWriter().write(jUsers);
-//            System.out.println(jUsers);
-        }
+        resp.setContentType("text/xml;charset=UTF-8");
+        String xml = userService.userInfoDisplay();
+        resp.getWriter().write(xml);
     }
 }

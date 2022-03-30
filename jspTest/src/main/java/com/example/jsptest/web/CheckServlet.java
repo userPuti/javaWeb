@@ -24,13 +24,7 @@ public class CheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String yhid = req.getParameter("yhid");
-        User user = userService.queryUserByYhid(yhid);
+        String xml= userService.queryUserByYhid(yhid);
 
-        if (null != user) {
-            Gson gson = new Gson();
-            String jUser = gson.toJson(user);
-            HttpSession session = req.getSession();
-            session.setAttribute("user", jUser);
-        }
     }
 }

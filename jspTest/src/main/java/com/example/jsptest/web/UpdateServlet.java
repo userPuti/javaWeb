@@ -58,7 +58,6 @@ public class UpdateServlet extends HttpServlet {
             user.setYhxb("09_00003-255");
         }
 
-        user.setCsrq(csrq);
         user.setPxh(Integer.parseInt(req.getParameter("pxhText")));
 
         System.out.println(sfjy);
@@ -70,10 +69,9 @@ public class UpdateServlet extends HttpServlet {
         }
 
         Date date = new Date();
-        SimpleDateFormat djrq = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat djsj = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        user.setDjrq(djrq.format(date));
-        user.setDjsj(djsj.format(date));
+        SimpleDateFormat rq = new SimpleDateFormat("yyyy-MM-dd");
+        user.setCsrq(rq.format(csrq));
+        user.setDjrq(rq.format(date));
 
         int rows = userService.updateUserInfo(user);
 

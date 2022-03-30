@@ -7,7 +7,7 @@ $(function () {
 
     $("#back").click(function () {
         clear();
-        $(location).attr("href", "t1.jsp");
+        $(location).attr("href", "homePage.jsp");
     });
 
     let type = $.cookie("type");
