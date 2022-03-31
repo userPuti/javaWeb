@@ -33,27 +33,27 @@ public interface UserService {
     public String insertUser(User user);
 
     /**
-     * 根据用户名查询用户
+     * 根据用户名查询用户，显示在主页中
      *
      * @param username 用户名
-     * @return User对象
+     * @return xmlString
      */
     public String queryUserByYhid(String username);
 
     /**
-     * 根据用户部门查询用户
+     * 根据用户部门查询用户，显示在主页中
      *
      * @param yhbm 用户部门
-     * @return List<User>对象
+     * @return xmlString
      */
     public String queryUserByYhbm(String yhbm);
 
     /**
-     * 根据用户id和用户部门查询用户
+     * 根据用户id和用户部门查询用户，显示在主页
      *
      * @param yhid 用户id
      * @param yhbm 用户部门
-     * @return User对象
+     * @return xmlString
      */
     public String queryUserByYhidAndYhbm(String yhid, String yhbm);
 
@@ -73,4 +73,13 @@ public interface UserService {
      * @return 影响的行数
      */
     public int updateUserInfo(User user);
+
+    /**
+     * 查看用户的详细信息，用于弹窗
+     *
+     * @param yhid 用户的id
+     * @return user对象
+     */
+    public User viewUserInfo(String yhid);
+
 }

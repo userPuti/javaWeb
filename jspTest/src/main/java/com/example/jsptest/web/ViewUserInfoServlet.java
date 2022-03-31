@@ -10,21 +10,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
  * @author Puti
  * @date 2022/3/24 10:17
  */
-@WebServlet(name = "CheckServlet", value = "/checkServlet")
-public class CheckServlet extends HttpServlet {
+@WebServlet(name = "ViewUserInfoServlet", value = "/viewUserInfoServlet")
+public class ViewUserInfoServlet extends HttpServlet {
     private final UserService userService = new ImplUserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String yhid = req.getParameter("yhid");
-        String xml= userService.queryUserByYhid(yhid);
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=utf-8");
 
+        String yhid = req.getParameter("yhid");
+        User user = userService.viewUserInfo(yhid);
+        Gson gson = new Gson();
+        String JUser = gson.toJson(user);
+        resp.getWriter().write(JUser);
     }
 }

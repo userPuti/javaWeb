@@ -51,22 +51,37 @@ function queryInfo() {
     }
 }
 
-function delRows() {
-    // 获取所有选中行的id
-    let checkedRows = mygrid.getCheckedRows(0);
-    if (!checkedRows) {
-        layer.msg("未勾选行记录！", {
-            icon: 7,
-            shade: 0.000001, //不展示遮罩，但是要有遮罩效果
-            time: 2000
+// function delRows() {
+//     // 获取所有选中行的id
+//     let checkedRows = mygrid.getCheckedRows(0);
+//     if (!checkedRows) {
+//         layer.msg("未勾选行记录！", {
+//             icon: 7,
+//             shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+//             time: 2000
+//         });
+//         return;
+//     }
+//
+//     alert("勾选中的行ID分别为：" + checkedRows);
+//
+//     // TODO
+// }
+
+function view(yhid) {
+    // alert(user);
+    $.getJSON("viewUserInfoServlet", {"yhid": yhid}, function (user) {
+        console.log(user);
+        layer.open({
+            type: 2,
+            title: "用户详细信息",
+            area: ['700px', '500px'],
+            shadeClose: true, //点击遮罩关闭
+            content: CONTEXT_PATH + "/userInfo.jsp?yhid=" + encodeURIComponent(user.yhid) + "&yhxm="
+                + encodeURIComponent(user.yhxm) + "&yhbm=" + encodeURIComponent(user.yhbm) + "&yhkl=" + encodeURIComponent(user.yhkl) + "&yhxb="
+                + encodeURIComponent(user.yhxb) + "&csrq=" + encodeURIComponent(user.csrq) + "&pxh=" + encodeURIComponent(user.pxh) + "&sfjy=" + encodeURIComponent(user.sfjy),
         });
-        return;
-    }
-
-    alert("勾选中的行ID分别为：" + checkedRows);
-
-    // TODO
+    })
 }
-
 
 

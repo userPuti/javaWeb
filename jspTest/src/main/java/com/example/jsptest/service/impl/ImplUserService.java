@@ -50,7 +50,7 @@ public class ImplUserService implements UserService {
             user.setYhxb("09_00003-255");
         }
 
-        if (Objects.equals(sfjy,"on")) {
+        if (Objects.equals(sfjy, "on")) {
             user.setSfjy("1");
         } else {
             user.setSfjy("0");
@@ -129,6 +129,21 @@ public class ImplUserService implements UserService {
         return userDao.updateUserInfo(user);
     }
 
+    /**
+     * 查看用户的详细信息，用于弹窗
+     *
+     * @param yhid 用户的id
+     * @return user对象
+     */
+    @Override
+    public User viewUserInfo(String yhid) {
+        List<User> users = userDao.queryUserByYhid(yhid);
+        if (users.size() > 0) {
+            return transferToRealInfo(users.get(0));
+        }
+        return null;
+    }
+
     private String userListXml(List<User> list) {
         StringBuilder allUserxml = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
         if (list != null && list.size() > 0) {
@@ -172,7 +187,7 @@ public class ImplUserService implements UserService {
                 allUserxml.append("<cell>").append(user.getDjrq()).append("</cell>");
                 allUserxml.append("<cell>").append(sfjy).append("</cell>");
                 allUserxml.append("<cell>").append(user.getPxh()).append("</cell>");
-                allUserxml.append("<cell>").append("images/search.png^查看^userInfo.jsp^").append("</cell>");
+                allUserxml.append("<cell>").append("images/search.png^查看^javascript:view(\"").append(user.getYhid()).append("\")^_self").append("</cell>");
                 allUserxml.append("<cell>").append("images/modify.png^修改^modifyUser.jsp^").append("</cell>");
                 allUserxml.append("<cell>").append("images/delete.png^删除^deleteUser.jsp^").append("</cell>");
                 allUserxml.append("</row>");
@@ -183,5 +198,37 @@ public class ImplUserService implements UserService {
             allUserxml.append("<rows><userdata name='totalnumber'>0</userdata></rows>");
         }
         return allUserxml.toString();
+    }
+
+    private User transferToRealInfo(User user) {
+        String yhbm = user.getYhbm();
+
+        if (Objects.equals(yhbm, "32010001")) {
+            user.setYhbm("立案庭");
+        } else if (Objects.equals(yhbm, "32010002")) {
+            user.setYhbm("业务庭");
+        } else if (Objects.equals(yhbm, "32010003")) {
+            user.setYhbm("办公室");
+        }
+
+        String yhxb = user.getYhxb();
+
+        if (Objects.equals(yhxb, "09_00003-1")) {
+            user.setYhxb("男");
+        } else if (Objects.equals(yhxb, "09_00003-2")) {
+            user.setYhxb("女");
+        } else if (Objects.equals(yhxb, "09_00003-255")) {
+            user.setYhxb("其他");
+        }
+
+        String sfjy = user.getSfjy();
+
+        if (Objects.equals(sfjy, "1")) {
+            user.setSfjy("是");
+        } else if (Objects.equals(sfjy, "0")) {
+            user.setSfjy("否");
+        }
+
+        return user;
     }
 }

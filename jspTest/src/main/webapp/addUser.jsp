@@ -19,63 +19,11 @@
 <%--<div class="tdh_form_subtitle">副标题</div>--%>
 <div class="tdh_form_caption"><i class="tdh_form_tag"></i>基本信息</div>
 <form action="${pageContext.request.contextPath}/addUserServlet" method="post">
-    <table class="tdh_form">
-        <colgroup>
-            <col width="11%"/>
-            <col width="22%"/>
-            <col width="11%"/>
-            <col width="22%"/>
-            <col width="11%"/>
-            <col width="22%"/>
-        </colgroup>
-        <tr>
-            <td class="tdTitle"><i class="required">*</i>用户账号</td>
-            <td class="tdCont"><input id="iYhzh" name="iYhzh" class="inputText" type="text" placeholder="请输入"/></td>
-            <td class="tdTitle"><i class="required">*</i>用户姓名</td>
-            <td class="tdCont"><input id="iYhxm"  name="iYhxm" class="inputText" type="text" placeholder="请输入"/></td>
-            <td class="tdTitle">排序号</td>
-            <td class="tdCont"><input id="iPxh" name="iPxh" class="inputText" type="text" placeholder="请输入"/></td>
-        </tr>
-        <tr>
-            <td class="tdTitle">出生日期</td>
-            <td class="tdCont">
-                <input id="iCsrq" name="iCsrq" class="Wdate inputText" type="text" onClick="WdatePicker()" readonly="readonly" />
-            </td>
-            <td class="tdTitle"><i class="required">*</i>用户口令</td>
-            <td class="tdCont"><input id="iYhkl" name="iYhkl" class="inputText" type="text" placeholder="请输入"/></td>
-            <td class="tdTitle"><i class="required">*</i>重复口令</td>
-            <td class="tdCont"><input id="iCfkl" name="iCfkl" class="inputText" type="text" placeholder="请输入"/></td>
-        </tr>
-        <tr>
-            <td class="tdTitle">用户部门</td>
-            <td class="tdCont">
-                <select class="inputSel" id="yhbm" name="yhbm">
-                    <option value="blank" selected></option>
-                    <option value="lat">立案庭</option>
-                    <option value="ywt">业务庭</option>
-                    <option value="bgs">办公室</option>
-                </select>
-            </td>
-            <td class="tdTitle">用户性别</td>
-            <td class="tdCont">
-                <select class="inputSel" id="xb" name="xb">
-                    <option value="blank" selected></option>
-                    <option value="male">男</option>
-                    <option value="female">女</option>
-                </select>
-            </td>
-            <td class="tdTitle">是否禁用</td>
-            <td class="tdCont" colspan="5">
-                <input id="iSfjy" name="iSfjy" class="inputSwitch" type="checkbox" data-text="失效/启用"/>
-            </td>
-        </tr>
-    </table>
-
+    <jsp:include page="commonTable.jsp"/>
     <div class="tdh_layout_b" style="height: 40px; text-align: center">
         <input class="tdh_btn tdh_btn_blue" type="submit" value="保存"/>
         <input class="tdh_btn tdh_btn_blue" id="back" type="button" value="返回"/>
     </div>
-
     <input type="hidden" value="${isSuccess}" id="isSuccess"/>
 </form>
 </body>
