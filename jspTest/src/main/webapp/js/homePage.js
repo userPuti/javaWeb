@@ -70,18 +70,50 @@ function queryInfo() {
 
 function view(yhid) {
     // alert(user);
-    $.getJSON("viewUserInfoServlet", {"yhid": yhid}, function (user) {
-        console.log(user);
-        layer.open({
-            type: 2,
-            title: "用户详细信息",
-            area: ['700px', '500px'],
-            shadeClose: true, //点击遮罩关闭
-            content: CONTEXT_PATH + "/userInfo.jsp?yhid=" + encodeURIComponent(user.yhid) + "&yhxm="
-                + encodeURIComponent(user.yhxm) + "&yhbm=" + encodeURIComponent(user.yhbm) + "&yhkl=" + encodeURIComponent(user.yhkl) + "&yhxb="
-                + encodeURIComponent(user.yhxb) + "&csrq=" + encodeURIComponent(user.csrq) + "&pxh=" + encodeURIComponent(user.pxh) + "&sfjy=" + encodeURIComponent(user.sfjy),
-        });
-    })
+    layer.open({
+        type: 2,
+        title: "用户详细信息",
+        area: ['700px', '500px'],
+        shadeClose: true, //点击遮罩关闭
+        content: CONTEXT_PATH + "/userInfo.jsp?yhid=" + encodeURIComponent(yhid),
+    });
 }
 
 
+function modify(yhid) {
+    $.getJSON("viewUserInfoServlet", {"yhid": yhid}, function (user) {
+        console.log(user);
+        let params = "yhid=" + encodeURIComponent(user.yhid);
+        openLayerModal(CONTEXT_PATH + "/modify.jsp?" + params, "修改用户", "700", "500", "modifyCallBack");
+    })
+}
+
+function modifyCallBack(rtn) {
+    if (rtn === "1") {
+        mygrid.loadPage();
+    }
+}
+
+
+function bulkDeletion() {
+    let gridlist = mygrid.getCheckedRows(0);
+    $.getJSON("bulkDeletionServlet", {del: gridlist}, function (isSucc) {
+        isSucc = $.trim(isSucc);
+        console.log(isSucc);
+        if (isSucc === "1") {
+            layer.msg("删除成功！", {
+                icon: 1,
+                shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                time: 1000
+            },function () {
+                mygrid.loadPage();
+            })
+        } else {
+            layer.msg("删除失败！", {
+                icon: 2,
+                shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                time: 1000
+            })
+        }
+    });
+}

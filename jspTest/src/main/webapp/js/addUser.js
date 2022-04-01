@@ -1,6 +1,4 @@
 $(function () {
-
-
     $("form").submit(function () {
         let reqInfo = validateForm();
 
@@ -56,5 +54,4 @@ function validateForm() {
     let cfkl = $("#iCfkl").val();
 
     return yhzh != null && yhzh !== "" && yhxm != null && yhxm !== "" && yhkl != null && yhkl !== "" && cfkl != null && cfkl !== "" && cfkl === yhkl;
-
 }

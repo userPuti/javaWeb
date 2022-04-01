@@ -72,7 +72,7 @@ public interface UserService {
      * @param user user对象
      * @return 影响的行数
      */
-    public int updateUserInfo(User user);
+    public boolean updateUserInfo(User user);
 
     /**
      * 查看用户的详细信息，用于弹窗
@@ -81,5 +81,14 @@ public interface UserService {
      * @return user对象
      */
     public User viewUserInfo(String yhid);
+
+
+    /**
+     * 批量删除用户信息
+     *
+     * @param del 用户的信息集合
+     * @return 是否删除成功
+     */
+    public boolean bulkDeletion(String del);
 
 }

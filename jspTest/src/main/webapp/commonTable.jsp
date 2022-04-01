@@ -34,14 +34,14 @@
         </td>
         <td class="tdTitle"><i class="required">*</i>用户口令</td>
         <td class="tdCont"><input id="iYhkl" name="iYhkl" class="inputText" type="text" placeholder="请输入"/></td>
-        <td class="tdTitle"><i class="required">*</i>重复口令</td>
+        <td class="tdTitle" id="tCfkl"><i class="required">*</i>重复口令</td>
         <td class="tdCont"><input id="iCfkl" name="iCfkl" class="inputText" type="text" placeholder="请输入"/></td>
     </tr>
     <tr>
         <td class="tdTitle">用户部门</td>
         <td class="tdCont">
-            <select class="inputSel" id="yhbm" name="yhbm">
-                <option value="blank" selected></option>
+            <select class="inputSel" id="iYhbm" name="iYhbm">
+                <option value="" selected></option>
                 <option value="lat">立案庭</option>
                 <option value="ywt">业务庭</option>
                 <option value="bgs">办公室</option>
@@ -49,10 +49,11 @@
         </td>
         <td class="tdTitle">用户性别</td>
         <td class="tdCont">
-            <select class="inputSel" id="xb" name="xb">
-                <option value="blank" selected></option>
+            <select class="inputSel" id="iYhxb" name="iYhxb">
+                <option value="" selected></option>
                 <option value="male">男</option>
                 <option value="female">女</option>
+                <option value="other">其他</option>
             </select>
         </td>
         <td class="tdTitle">是否禁用</td>

@@ -1,23 +1,17 @@
 $(function () {
     let yhid = getQueryVariable("yhid");
-    let yhxm = getQueryVariable("yhxm");
-    let yhxb = getQueryVariable("yhxb");
-    let yhbm = getQueryVariable("yhbm");
-    let csrq = getQueryVariable("csrq");
-    let pxh  = getQueryVariable("pxh");
-    let sfjy = getQueryVariable("sfjy");
-    let yhkl = getQueryVariable("yhkl");
 
-    // console.log(yhid);
-    $("#iYhzh").val(yhid);
-    $("#iYhxm").val(yhxm);
-    $("#iYhxb").val(yhxb);
-    $("#iYhbm").val(yhbm);
-    $("#iCsrq").val(csrq);
-    $("#iPxh").val(pxh);
-    $("#iSfjy").val(sfjy);
-    $("#iYhkl").val(yhkl);
-
+    $.getJSON("viewUserInfoServlet", {"yhid": yhid}, function (user) {
+            $("#iYhzh").val(user.yhid);
+            $("#iYhxm").val(user.yhxm);
+            $("#iYhxb").val(user.yhxb);
+            $("#iYhbm").val(user.yhbm);
+            $("#iCsrq").val(user.csrq);
+            $("#iPxh").val(user.pxh);
+            $("#iSfjy").val(user.sfjy);
+            $("#iYhkl").val(user.yhkl);
+        }
+    )
 
     $("#back").click(function () {
         closeWindow();

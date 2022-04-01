@@ -47,7 +47,7 @@
                         <a class="tdh_btn tdh_btn_blue" id="addUser">
                             <i class="tdh_icon icon_add"></i>新增
                         </a>
-                        <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="delUsers">
+                        <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="delUsers" onclick="bulkDeletion()">
                             <i class="tdh_icon icon_del"></i>批量删除
                         </a>
                     </td>

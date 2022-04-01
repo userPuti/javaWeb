@@ -1,138 +1,135 @@
 $(function () {
-    $("form").submit(
-        function () {
-            return validateForm();
-        }
-    );
+
+    showUserInfo();
 
     $("#back").click(function () {
-        clear();
-        $(location).attr("href", "homePage.jsp");
+        closeWindow();
     });
 
-    let type = $.cookie("type");
-    if (type === "modify") {
-        modifier();
-    }
+
+    $("form").submit(function () {
+        let reqInfo = validateForm();
+
+        if (reqInfo === false) {
+            layer.msg("请检查必填项！", {
+                icon: 7,
+                shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                time: 2000
+            });
+            return reqInfo;
+        }
+    });
 })
 
-function clear() {
-    $.removeCookie("yhid");
-    $.removeCookie("yhxm");
-    $.removeCookie("yhkl");
-    $.removeCookie("yhxb");
-    $.removeCookie("csrq");
-    $.removeCookie("sfjy");
-    $.removeCookie("pxh");
-    $.removeCookie("yhbm");
-}
+function doSave() {
+    let reqInfo = validateForm();
 
-function modifier() {
-    let yhid = $.cookie("yhid");
-    // console.log(yhid);
-    let yhxm = $.cookie("yhxm");
-    let yhkl = $.cookie("yhkl");
-    let yhxb = $.cookie("yhxb");
-    let csrq = $.cookie("csrq");
-    let sfjy = $.cookie("sfjy");
-    let pxh = $.cookie("pxh");
-    let yhbm = $.cookie("yhbm");
-
-    if (yhid == null || pxh == null || yhxm == null || yhkl == null || yhbm == null || yhxb == null || sfjy == null || csrq == null) {
+    if (reqInfo === false) {
+        layer.msg("请检查必填项！", {
+            icon: 7,
+            shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+            time: 2000
+        });
         return;
     }
 
-    $("#yhidText").val(yhid);
-    $("#yhidText").attr("readonly", "readonly");
-
-    $("#pxhText").val(pxh);
-    $("#yhxmText").val(yhxm);
-
-    $("#yhklText").val(yhkl);
-    $("#cfklText").val(yhkl);
-
-
-    console.log(yhbm);
-    // console.log (yhbm === "立案庭");
-    if (yhbm === "立案庭") {
-        $("#yhbm option[value='lat']").attr("selected", true);
-    } else if (yhbm === "业务庭") {
-        console.log("ywt");
-        $("#yhbm option[value='ywt']").attr("selected", true);
-    } else {
-        $("#yhbm option[value='bgs']").attr("selected", true);
-    }
-
-    console.log(yhxb);
-    // console.log(yhxb === "09_00003-2");
-
-    if (yhxb === "男") {
-        $("#xb option[value='male']").attr("selected", true);
-    } else if (yhxb === "女") {
-        $("#xb option[value='female']").attr("selected", true);
-    }
-
-    csrq = insertStr(csrq, 4, "-");
-    csrq = insertStr(csrq, 7, "-");
-    let birth = new Date(csrq).format("yyyy-MM-dd");
-    $("#date").attr("value", birth);
-
-    if (sfjy === "是") {
-        $("#sfjy").attr("checked", "checked");
-    }
+    let params = serializeTwo("#form1");
+    $.ajax({
+        url: _part + "/updateServlet",
+        type: "post",
+        dataType: "text",
+        data: params,
+        success: function (data) {
+            data = $.trim(data);
+            if (data === "1") {
+                layer.msg("修改成功！", {
+                    icon: 1,
+                    shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                    time: 2000
+                }, function () {
+                    layerReturn("1",false);
+                });
+            } else {
+                layer.msg("修改失败！", {
+                    icon: 0,
+                    shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                    time: 2000
+                }, function () {
+                    layerClose();
+                });
+            }
+        },
+        error: function (e) {
+            layer.msg("修改失败！", {
+                icon: 0,
+                shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                time: 2000
+            });
+        }
+    })
 }
 
-function insertStr(soure, start, newStr) {
-    return soure.slice(0, start) + newStr + soure.slice(start);
+function closeWindow() {
+    parent.layer.closeAll();
+}
+
+function getQueryVariable(variable) {
+    let query = window.location.search.substring(1);
+
+    let vars = query.split("&");
+    for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split("=");
+        if (pair[0] === variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    return false;
 }
 
 function validateForm() {
-    let yhid = $("#yhidText").val();
-    let yhxm = $("#yhxmText").val();
-    let yhkl = $("#yhklText").val();
-    let cfkl = $("#cfklText").val();
+    let yhzh = $("#iYhzh").val();
+    let yhxm = $("#iYhxm").val();
+    let yhkl = $("#iYhkl").val();
 
-    if (yhid == null || yhid === "") {
-        alert("id必须填写");
-        return false;
-    }
-    if (yhxm == null || yhxm === "") {
-        alert("姓名必须填写");
-        return false;
-    }
-    if (yhkl == null || yhkl === "") {
-        alert("口令必须填写");
-        return false;
-    }
-    if (cfkl == null || cfkl === "") {
-        alert("重复口令必须填写");
-        return false;
-    }
-    if (yhkl !== cfkl) {
-        alert("口令不一致");
-        return false;
-    }
-
-    return true;
+    return yhzh != null && yhzh !== "" && yhxm != null && yhxm !== "" && yhkl != null && yhkl !== "";
 }
 
-Date.prototype.format = function (fmt) {
-    var o = {
-        "M+": this.getMonth() + 1, //月份
-        "d+": this.getDate(), //日
-        "h+": this.getHours(), //小时
-        "m+": this.getMinutes(), //分
-        "s+": this.getSeconds(), //秒
-        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-        "S": this.getMilliseconds() //毫秒
-    };
-    if (/(y+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    }
-    for (var k in o) {
-        if (new RegExp("(" + k + ")").test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+
+function showUserInfo() {
+    let yhid = getQueryVariable("yhid");
+
+    $.getJSON("viewUserInfoServlet", {"yhid": yhid}, function (user) {
+            $("#iYhzh").val(user.yhid);
+            $("#iYhzh").attr("readonly", "readonly");
+            $("#iYhxm").val(user.yhxm);
+            $("#iCsrq").val(user.csrq);
+            $("#iPxh").val(user.pxh);
+            $("#iYhkl").val(user.yhkl);
+            $("#iCfkl").parent().html(" <input id=\"iDjrq\" name=\"iDjrq\" class=\"Wdate inputText\" type=\"text\" onClick=\"WdatePicker()\" readonly=\"readonly\" />");
+            $("#tCfkl").html("登记日期");
+            $("#iDjrq").val(user.djrq);
+
+            if (user.yhbm === "立案庭") {
+                setSelVal("#iYhbm", "lat");
+            } else if (user.yhbm === "业务庭") {
+                setSelVal("#iYhbm", "ywt");
+            } else {
+                setSelVal("#iYhbm", "bgs");
+            }
+
+            if (user.yhxb === "男") {
+                setSelVal("#iYhxb", "male");
+            } else if (user.yhxb === "女") {
+                setSelVal("#iYhxb", "female");
+            } else {
+                setSelVal("#iYhxb", "other");
+            }
+
+            if (user.sfjy === "是") {
+                setSwichVal("#iSfjy", true);
+            }
         }
-    }
-    return fmt;
+    )
+
+
 }

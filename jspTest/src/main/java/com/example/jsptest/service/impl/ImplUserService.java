@@ -125,8 +125,34 @@ public class ImplUserService implements UserService {
      * @return 影响的行数
      */
     @Override
-    public int updateUserInfo(User user) {
-        return userDao.updateUserInfo(user);
+    public boolean updateUserInfo(User user) {
+        String yhbm = user.getYhbm();
+
+        if (Objects.equals(yhbm, "lat")) {
+            user.setYhbm("32010001");
+        } else if (Objects.equals(yhbm, "ywt")) {
+            user.setYhbm("32010002");
+        } else {
+            user.setYhbm("32010003");
+        }
+
+        String xb = user.getYhxb();
+        if (Objects.equals(xb, "male")) {
+            user.setYhxb("09_00003-1");
+        } else if (Objects.equals(xb, "female")) {
+            user.setYhxb("09_00003-2");
+        } else {
+            user.setYhxb("09_00003-255");
+        }
+
+        String sfjy = user.getSfjy();
+        if (Objects.equals(sfjy, "on")) {
+            user.setSfjy("1");
+        } else {
+            user.setSfjy("0");
+        }
+
+        return userDao.updateUserInfo(user) == 1;
     }
 
     /**
@@ -142,6 +168,27 @@ public class ImplUserService implements UserService {
             return transferToRealInfo(users.get(0));
         }
         return null;
+    }
+
+    /**
+     * 批量删除用户信息
+     *
+     * @param del 用户的信息集合
+     * @return 是否删除成功
+     */
+    @Override
+    public boolean bulkDeletion(String del) {
+        String[] ids = del.trim().split(",");
+
+        for(String id : ids) {
+            int isSucc = userDao.deleteByYhid(id);
+
+            if(isSucc != 1) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private String userListXml(List<User> list) {
@@ -177,7 +224,7 @@ public class ImplUserService implements UserService {
                     sfjy = "否";
                 }
 
-                allUserxml.append("<row>");
+                allUserxml.append("<row id=\""+user.getYhid()+"\">");
                 allUserxml.append("<cell>0</cell>");
                 allUserxml.append("<cell>").append(user.getYhid()).append("</cell>");
                 allUserxml.append("<cell>").append(user.getYhxm()).append("</cell>");
@@ -188,7 +235,7 @@ public class ImplUserService implements UserService {
                 allUserxml.append("<cell>").append(sfjy).append("</cell>");
                 allUserxml.append("<cell>").append(user.getPxh()).append("</cell>");
                 allUserxml.append("<cell>").append("images/search.png^查看^javascript:view(\"").append(user.getYhid()).append("\")^_self").append("</cell>");
-                allUserxml.append("<cell>").append("images/modify.png^修改^modifyUser.jsp^").append("</cell>");
+                allUserxml.append("<cell>").append("images/modify.png^查看^javascript:modify(\"").append(user.getYhid()).append("\")^_self").append("</cell>");
                 allUserxml.append("<cell>").append("images/delete.png^删除^deleteUser.jsp^").append("</cell>");
                 allUserxml.append("</row>");
             }
@@ -199,6 +246,8 @@ public class ImplUserService implements UserService {
         }
         return allUserxml.toString();
     }
+
+
 
     private User transferToRealInfo(User user) {
         String yhbm = user.getYhbm();

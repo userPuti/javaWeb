@@ -13,6 +13,8 @@
 <script type="text/javascript" src="<%=CONTEXT_PATH%>/resources/v2/static/tdh/commonjs/tdh.nicescroll.js" ></script>
 <script type="text/javascript" src="<%=CONTEXT_PATH%>/resources/v2/static/tdh/commonjs/tdh.common.js" ></script>
 <script type="text/javascript" src="<%=CONTEXT_PATH%>/resources/v2/static/plugg/dhtmlx/dhtmlxAjax/codebase/dhtmlxcommon.js" ></script>
+<script type="text/javascript" src="<%=CONTEXT_PATH%>/resources/v2/static/plugg/layui/lay/modules/layer.js" ></script>
+<script type="text/javascript" src="<%=CONTEXT_PATH%>/resources/js/common.js" ></script>
 <%if(uilist.indexOf("_LAYOUT_")>=0){%>
 <link rel="stylesheet" href="<%=CONTEXT_PATH%>/resources/v2/static/tdh/layout/css/layout.css" />
 <%}%>
@@ -29,9 +31,6 @@
 <%if(uilist.indexOf("_PAGE_")>=0){ %>
 	<link rel="stylesheet" href="<%=CONTEXT_PATH%>/resources/v2/static/tdh/paging/css/paging.css" />
 	<script type="text/javascript" src="<%=CONTEXT_PATH%>/resources/v2/static/tdh/paging/js/tdh.paging.js" ></script>
-<%}%>
-<%if(uilist.indexOf("_LAYER_")>=0) { %>
-	<script type="text/javascript" src="<%=CONTEXT_PATH%>/resources/v2/static/plugg/layui/lay/modules/layer.js" ></script>
 <%}%>
 <%if(uilist.indexOf("_ZTREE_")>=0){%>
 	<link rel="stylesheet" href="<%=CONTEXT_PATH%>/resources/v2/static/plugg/ztree/css/metroStyle/metroStyle.css" />

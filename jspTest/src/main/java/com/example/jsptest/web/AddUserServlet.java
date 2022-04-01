@@ -35,15 +35,17 @@ public class AddUserServlet extends HttpServlet {
         user.setYhid(req.getParameter("iYhzh"));
         user.setYhxm(req.getParameter("iYhxm"));
         user.setYhkl(req.getParameter("iYhkl"));
-        user.setYhbm(req.getParameter("yhbm"));
+        user.setYhbm(req.getParameter("iYhbm"));
         String iPxh = req.getParameter("iPxh");
+
         if (iPxh != null && !iPxh.equals("")) {
             user.setPxh(Integer.parseInt(iPxh));
         } else {
             user.setPxh(null);
         }
+
         user.setSfjy(req.getParameter("iSfjy"));
-        user.setYhxb(req.getParameter("xb"));
+        user.setYhxb(req.getParameter("iYhxb"));
         user.setCsrq(req.getParameter("iCsrq"));
         SimpleDateFormat rq = new SimpleDateFormat("yyyy-MM-dd");
         user.setDjrq(rq.format(new Date()));
