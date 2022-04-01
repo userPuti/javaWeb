@@ -51,22 +51,6 @@ function queryInfo() {
     }
 }
 
-// function delRows() {
-//     // 获取所有选中行的id
-//     let checkedRows = mygrid.getCheckedRows(0);
-//     if (!checkedRows) {
-//         layer.msg("未勾选行记录！", {
-//             icon: 7,
-//             shade: 0.000001, //不展示遮罩，但是要有遮罩效果
-//             time: 2000
-//         });
-//         return;
-//     }
-//
-//     alert("勾选中的行ID分别为：" + checkedRows);
-//
-//     // TODO
-// }
 
 function view(yhid) {
     // alert(user);
@@ -96,24 +80,42 @@ function modifyCallBack(rtn) {
 
 
 function bulkDeletion() {
-    let gridlist = mygrid.getCheckedRows(0);
-    $.getJSON("bulkDeletionServlet", {del: gridlist}, function (isSucc) {
-        isSucc = $.trim(isSucc);
-        console.log(isSucc);
-        if (isSucc === "1") {
-            layer.msg("删除成功！", {
-                icon: 1,
-                shade: 0.000001, //不展示遮罩，但是要有遮罩效果
-                time: 1000
-            },function () {
-                mygrid.loadPage();
-            })
-        } else {
-            layer.msg("删除失败！", {
-                icon: 2,
-                shade: 0.000001, //不展示遮罩，但是要有遮罩效果
-                time: 1000
-            })
+    layer.confirm('确定删除这些数据吗？', {
+        title: '删除提示',
+        btn: ['确定', '取消'],
+        btn1: function () {
+            let gridlist = mygrid.getCheckedRows(0);
+
+            if (gridlist == null || gridlist.length === 0) {
+                layer.msg("还没选择任何信息", {
+                    icon: 7,
+                    shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                    time: 1000
+                })
+            } else {
+                $.getJSON("bulkDeletionServlet", {del: gridlist}, function (isSucc) {
+                    isSucc = $.trim(isSucc);
+                    console.log(isSucc);
+                    if (isSucc === "1") {
+                        layer.msg("删除成功！", {
+                            icon: 1,
+                            shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                            time: 1000
+                        }, function () {
+                            mygrid.loadPage();
+                        })
+                    } else {
+                        layer.msg("删除失败！", {
+                            icon: 2,
+                            shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                            time: 1000
+                        })
+                    }
+                });
+            }
+        },
+        btn2: function () {
+            layer.close();
         }
-    });
+    })
 }
