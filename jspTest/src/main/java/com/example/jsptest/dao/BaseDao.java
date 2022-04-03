@@ -27,10 +27,18 @@ public abstract class BaseDao {
      */
     public int update(String sql, Object... args) {
         Connection connection = JdbcUtils.getConnection();
+
         try {
-            return queryRunner.update(connection, sql, args);
+            int num = queryRunner.update(connection, sql, args);
+            connection.commit();
+            return num;
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         } finally {
             JdbcUtils.close(connection);
         }

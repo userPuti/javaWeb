@@ -21,12 +21,10 @@
 <form action="${pageContext.request.contextPath}/addUserServlet" method="post">
     <table class="tdh_form">
         <colgroup>
-            <col width="11%"/>
-            <col width="22%"/>
-            <col width="11%"/>
-            <col width="22%"/>
-            <col width="11%"/>
-            <col width="22%"/>
+            <col width="14%"/>
+            <col width="24%"/>
+            <col width="14%"/>
+            <col width="24%"/>
         </colgroup>
         <tr>
             <td class="tdTitle">用户账号</td>
@@ -37,16 +35,8 @@
             <td class="tdCont">
                 <input id="iYhxm" class="inputText" type="text" readonly="readonly"/>
             </td>
-            <td class="tdTitle">排序号</td>
-            <td class="tdCont">
-                <input id="iPxh" class="inputText" type="text" readonly="readonly"/>
-            </td>
         </tr>
         <tr>
-            <td class="tdTitle">出生日期</td>
-            <td class="tdCont">
-                <input id="iCsrq" class="inputText" type="text"  readonly="readonly"/>
-            </td>
             <td class="tdTitle">用户口令</td>
             <td class="tdCont">
                 <input id="iYhkl" class="inputText" type="text" readonly="readonly"/>
@@ -54,6 +44,17 @@
             <td class="tdTitle">用户部门</td>
             <td class="tdCont">
                 <input id="iYhbm" class="inputText" type="text" readonly="readonly"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitle">排序号</td>
+            <td class="tdCont">
+                <input id="iPxh" class="inputText" type="text" readonly="readonly"/>
+            </td>
+
+            <td class="tdTitle">出生日期</td>
+            <td class="tdCont">
+                <input id="iCsrq" class="inputText" type="text" readonly="readonly"/>
             </td>
         </tr>
         <tr>
@@ -65,15 +66,15 @@
             <td class="tdCont">
                 <input id="iSfjy" class="inputText" type="text" readonly="readonly"/>
             </td>
-            <td class="tdTitle"></td>
-            <td class="tdCont" colspan="5">
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div class="tdh_layout_b" style="height: 40px; text-align: center">
+                    <input class="tdh_btn tdh_btn_blue" id="back" type="button" value="返回"/>
+                </div>
             </td>
         </tr>
     </table>
-
-    <div class="tdh_layout_b" style="height: 40px; text-align: center">
-        <input class="tdh_btn tdh_btn_blue" id="back" type="button" value="返回"/>
-    </div>
 </form>
 </body>
 </html>

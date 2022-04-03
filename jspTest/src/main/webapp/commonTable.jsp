@@ -12,30 +12,31 @@
 <body>
 <table class="tdh_form">
     <colgroup>
-        <col width="11%"/>
-        <col width="22%"/>
-        <col width="11%"/>
-        <col width="22%"/>
-        <col width="11%"/>
-        <col width="22%"/>
+        <col width="14%"/>
+        <col width="24%"/>
+        <col width="14%"/>
+        <col width="24%"/>
     </colgroup>
     <tr>
         <td class="tdTitle"><i class="required">*</i>用户账号</td>
         <td class="tdCont"><input id="iYhzh" name="iYhzh" class="inputText" type="text" placeholder="请输入"/></td>
         <td class="tdTitle"><i class="required">*</i>用户姓名</td>
-        <td class="tdCont"><input id="iYhxm"  name="iYhxm" class="inputText" type="text" placeholder="请输入"/></td>
-        <td class="tdTitle">排序号</td>
-        <td class="tdCont"><input id="iPxh" name="iPxh" class="inputText" type="text" placeholder="请输入"/></td>
+        <td class="tdCont"><input id="iYhxm" name="iYhxm" class="inputText" type="text" placeholder="请输入"/></td>
     </tr>
     <tr>
-        <td class="tdTitle">出生日期</td>
-        <td class="tdCont">
-            <input id="iCsrq" name="iCsrq" class="Wdate inputText" type="text" onClick="WdatePicker()" readonly="readonly" />
-        </td>
         <td class="tdTitle"><i class="required">*</i>用户口令</td>
         <td class="tdCont"><input id="iYhkl" name="iYhkl" class="inputText" type="text" placeholder="请输入"/></td>
         <td class="tdTitle" id="tCfkl"><i class="required">*</i>重复口令</td>
         <td class="tdCont"><input id="iCfkl" name="iCfkl" class="inputText" type="text" placeholder="请输入"/></td>
+    </tr>
+    <tr>
+        <td class="tdTitle">排序号</td>
+        <td class="tdCont"><input id="iPxh" name="iPxh" class="inputText" type="text" placeholder="请输入"/></td>
+        <td class="tdTitle">出生日期</td>
+        <td class="tdCont">
+            <input id="iCsrq" name="iCsrq" class="Wdate inputText" type="text" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'} );"
+                   readonly="readonly"/>
+        </td>
     </tr>
     <tr>
         <td class="tdTitle">用户部门</td>
@@ -56,8 +57,10 @@
                 <option value="other">其他</option>
             </select>
         </td>
+    </tr>
+    <tr>
         <td class="tdTitle">是否禁用</td>
-        <td class="tdCont" colspan="5">
+        <td class="tdCont" colspan="3">
             <input id="iSfjy" name="iSfjy" class="inputSwitch" type="checkbox" data-text="失效/启用"/>
         </td>
     </tr>

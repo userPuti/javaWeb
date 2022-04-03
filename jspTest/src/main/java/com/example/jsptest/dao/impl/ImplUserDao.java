@@ -18,9 +18,17 @@ public class ImplUserDao extends BaseDao implements UserDao {
     }
 
     @Override
-    public List<User> queryAllUser() {
-        String sql = "select * from t_user";
-        return queryForList(User.class, sql);
+    public List<User> queryAllUser(int sta, int lim, String yhid, String yhbm) {
+        String sql = "select * from t_user ";
+        if(!"".equals(yhid)){
+            sql += " and yhid like ?";
+        }
+        if(!"".equals(yhbm)){
+            sql += " and yhbm = ?";
+        }
+        sql += " limit ? , ?";
+        sql.replaceFirst("and","where");
+        return queryForList(User.class, sql, sta, lim);
     }
 
     @Override
@@ -48,9 +56,9 @@ public class ImplUserDao extends BaseDao implements UserDao {
      * @return List<User>对象
      */
     @Override
-    public List<User> queryUserByYhbm(String yhbm) {
-        String sql = "select * from t_user where yhbm = ?";
-        return queryForList(User.class, sql, yhbm);
+    public List<User> queryUserByYhbm(String yhbm, int sta, int lim) {
+        String sql = "select * from t_user where yhbm = ? limit ?, ?";
+        return queryForList(User.class, sql, yhbm, sta, lim);
     }
 
     /**
@@ -88,5 +96,28 @@ public class ImplUserDao extends BaseDao implements UserDao {
     public int updateUserInfo(User user) {
         String sql = "update t_user set yhxm= ?, yhkl=?,yhxb=?,yhbm=?,csrq=?,djrq=?,sfjy=?,pxh=? where yhid=?";
         return update(sql, user.getYhxm(), user.getYhkl(), user.getYhxb(), user.getYhbm(), user.getCsrq(), user.getDjrq(), user.getSfjy(), user.getPxh(), user.getYhid());
+    }
+
+    /**
+     * 查询用户信息总量
+     *
+     * @return 数量
+     */
+    @Override
+    public long countUser() {
+        String sql = "select count(*) from t_user";
+        return (long) queryForSingleValue(sql);
+    }
+
+    /**
+     * 根据用户部门代码查询用户部门的人数
+     *
+     * @param yhbm 用户部门
+     * @return 用户部门的人数
+     */
+    @Override
+    public long countYhbmUser(String yhbm) {
+        String sql = "select count(*) from t_user where yhbm = ?";
+        return (long) queryForSingleValue(sql, yhbm);
     }
 }

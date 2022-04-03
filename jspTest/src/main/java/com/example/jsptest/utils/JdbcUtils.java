@@ -35,6 +35,7 @@ public class JdbcUtils {
 
         try {
             connection = dataSource.getConnection();
+            connection.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
         }

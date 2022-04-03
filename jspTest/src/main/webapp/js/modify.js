@@ -47,7 +47,7 @@ function doSave() {
                     shade: 0.000001, //不展示遮罩，但是要有遮罩效果
                     time: 2000
                 }, function () {
-                    layerReturn("1",false);
+                    layerReturn("1");
                 });
             } else {
                 layer.msg("修改失败！", {

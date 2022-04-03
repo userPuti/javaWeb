@@ -24,7 +24,7 @@ public interface UserDao {
      *
      * @return List<User>
      */
-    public List<User> queryAllUser();
+    public List<User> queryAllUser(int sta,int lim);
 
     /**
      * 新增一个用户信息
@@ -48,7 +48,7 @@ public interface UserDao {
      * @param yhbm 用户部门
      * @return List<User>对象
      */
-    public List<User> queryUserByYhbm(String yhbm);
+    public List<User> queryUserByYhbm(String yhbm,int sta,int lim);
 
     /**
      * 根据用户id和用户部门查询用户
@@ -75,4 +75,21 @@ public interface UserDao {
      * @return 影响的行数
      */
     public int updateUserInfo(User user);
+
+    /**
+     * 查询用户信息总量
+     *
+     * @return 数量
+     */
+    public long countUser();
+
+
+    /**
+     * 根据用户部门代码查询用户部门的人数
+     *
+     * @param yhbm 用户部门
+     * @return 用户部门的人数
+     */
+    public long countYhbmUser(String yhbm);
+
 }

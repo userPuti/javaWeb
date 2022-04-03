@@ -16,7 +16,7 @@ class UserDaoTest {
 
     @Test
     void queryAllUser() {
-        System.out.println(userDao.queryAllUser());
+//        System.out.println(userDao.queryAllUser());
     }
 
 
@@ -34,7 +34,7 @@ class UserDaoTest {
 
     @Test
     void queryUserByYhbm() {
-        System.out.println(userDao.queryUserByYhbm("32010001"));
+//        System.out.println(userDao.queryUserByYhbm("32010001"));
     }
 
     @Test

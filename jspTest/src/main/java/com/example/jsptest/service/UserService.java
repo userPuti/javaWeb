@@ -22,7 +22,7 @@ public interface UserService {
      *
      * @return List<User>
      */
-    public String userInfoDisplay();
+    public String userInfoDisplay(int sta, int lim);
 
     /**
      * 新增用户信息
@@ -46,7 +46,7 @@ public interface UserService {
      * @param yhbm 用户部门
      * @return xmlString
      */
-    public String queryUserByYhbm(String yhbm);
+    public String queryUserByYhbm(String yhbm,int sta, int lim);
 
     /**
      * 根据用户id和用户部门查询用户，显示在主页
@@ -90,5 +90,4 @@ public interface UserService {
      * @return 是否删除成功
      */
     public boolean bulkDeletion(String del);
-
 }

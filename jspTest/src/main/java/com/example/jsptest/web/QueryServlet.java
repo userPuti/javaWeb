@@ -24,8 +24,11 @@ public class QueryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/xml;charset=utf-8");
+
         String yhzh = req.getParameter("yhzh");
         String yhbm = req.getParameter("yhbm");
+        int sta = Integer.parseInt(req.getParameter("start"));
+        int lim = Integer.parseInt(req.getParameter("limit"));
 
         if ((yhzh == null || yhzh.equals("")) && (yhbm == null || yhbm.equals(""))) {
             return;
@@ -46,7 +49,7 @@ public class QueryServlet extends HttpServlet {
             userInfo = userService.queryUserByYhidAndYhbm(yhzh, yhbm);
             resp.getWriter().write(userInfo);
         } else if (yhzh == null || yhzh.equals("")) {
-            userInfo = userService.queryUserByYhbm(yhbm);
+            userInfo = userService.queryUserByYhbm(yhbm,sta-1,lim);
             resp.getWriter().write(userInfo);
         } else {
             userInfo = userService.queryUserByYhid(yhzh);
